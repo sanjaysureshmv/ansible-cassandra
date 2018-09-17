@@ -1,0 +1,17 @@
+---
+- name: Install java
+  apt:
+    name: openjdk-8-jre
+    state: present
+    update_cache: yes
+- name: Create java home
+  shell: echo "JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")" | sudo tee -a /etc/profile
+- name: source  
+  shell: source /etc/profile
+  args:
+    executable: /bin/bash
+
+
+
+
+
