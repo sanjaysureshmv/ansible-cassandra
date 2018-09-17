@@ -1,0 +1,15 @@
+  - name: Add the repository of cassandra
+    apt_repository:
+      repo: deb http://www.apache.org/dist/cassandra/debian 311x main
+      filename: cassandra.sources
+  - name: Add an apt signing key
+    apt_key:
+      url: https://www.apache.org/dist/cassandra/KEYS
+      state: present
+  - name: Update the repo list
+    apt:
+      update_cache: yes
+    notify:
+      - Start cassandra server
+
+      
