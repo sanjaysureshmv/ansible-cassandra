@@ -6,10 +6,17 @@
     apt_key:
       url: https://www.apache.org/dist/cassandra/KEYS
       state: present
-  - name: Update the repo list
+  - name: Install Cassandra  and Update the repo list and Restart cassandra
     apt:
+      name: cassandra
       update_cache: yes
+      state: present
     notify:
-      - Start cassandra server
+      - Restart cassandra server
 
+  - include: cassandra_config.yml      
+  - name: Restart cassandra service
+    systemd:
+      name: cassandra
+      state: restarted
       

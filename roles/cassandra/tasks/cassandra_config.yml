@@ -1,0 +1,6 @@
+---
+- name: Change the config according to our needs
+  template: 
+    src: cassandrayaml.j2
+    dest: /etc/cassandra/cassandra.yaml
+    backup: yes
